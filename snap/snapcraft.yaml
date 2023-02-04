@@ -88,7 +88,7 @@ parts:
     after: [desktop-qt5]
     plugin: cmake
     cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=usr/local
+      - -DCMAKE_INSTALL_PREFIX=/usr/local
     source: https://gitee.com/coconil/notepad--.git
     source-type: git
     source-branch: cmake_support
