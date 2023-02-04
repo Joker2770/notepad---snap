@@ -87,8 +87,8 @@ parts:
   npdd:
     after: [desktop-qt5]
     plugin: cmake
-    cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
+    # cmake-parameters:
+      # - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
     source: https://gitee.com/coconil/notepad--.git
     source-type: git
     source-branch: cmake_support
@@ -107,8 +107,8 @@ parts:
       - libqt5multimedia5
       - libqt5printsupport5
       - libqt5xmlpatterns5
-    # override-build: |
-      # cmake ${SNAPCRAFT_PART_BUILD}/../src -DCMAKE_BUILD_TYPE=Release
+    override-build: |
+      cmake ${SNAPCRAFT_PART_BUILD}/../src -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/bin
       # make -j $(nproc)
       # mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/local/bin
       # cp ./notepad-- ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
