@@ -1,0 +1,144 @@
+#
+#    This is a snapcraft build script.
+#    Copyright (C) 2022-2023 Jintao Yang <yjt950840@outlook.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+#    snapcraft.yaml:
+#       snapcraft script.
+#       build snap package on Linux.
+#
+
+name: npdd # you probably want to 'snapcraft register <name>'
+version: '1.22.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A sample Notepad++-like editor. # 79 char long summary
+description: |
+   Notepad-- is a great substitute for notepad++.
+
+  _More build details: https://github.com/Joker2770/notepad---snap.git_
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+base: core20
+license: 'GPL-3.0+'
+
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes
+
+layout:
+  /etc/fonts:
+    bind: $SNAP/etc/fonts
+  /etc/pulse:
+    bind: $SNAP/etc/pulse
+  /usr/local/share:
+    bind: $SNAP/usr/local/share
+  /usr/share/X11:
+    bind: $SNAP/usr/share/X11
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gtk-2.0/modules:
+    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gtk-2.0/modules
+
+apps:
+  npdd:
+    command: usr/local/bin/notepad--
+    command-chain:
+      - bin/desktop-launch
+    plugs:
+      - home
+      - desktop
+      - desktop-legacy
+      - wayland
+      - unity7
+      - x11
+      - opengl
+      - removable-media
+      - gsettings
+      - network
+      - network-bind
+      - audio-playback
+    environment:
+      DISABLE_WAYLAND: 1
+      XDG_DATA_DIRS: $SNAP/share:$XDG_DATA_DIRS
+      # Use GTK3 cursor theme, icon theme and open/save file dialogs.
+      QT_QPA_PLATFORMTHEME: gtk3
+
+parts:
+  npdd:
+    after: [desktop-qt5]
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
+    source: https://gitee.com/coconil/notepad--.git
+    source-type: git
+    source-branch: cmake_support
+    build-packages:
+      - gcc
+      - g++
+      - make
+      - cmake
+      - qtmultimedia5-dev
+      - libqscintilla2-qt5-dev
+      - libqt5xmlpatterns5-dev
+      - libqt5multimedia5-plugins
+    stage-packages:
+      - libqt5core5a
+      - libqt5widgets5
+      - libqt5multimedia5
+      - libqt5printsupport5
+      - libqt5xmlpatterns5
+    # override-build: |
+      # cmake ${SNAPCRAFT_PART_BUILD}/../src -DCMAKE_BUILD_TYPE=Release
+      # make -j $(nproc)
+      # mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/local/bin
+      # cp ./notepad-- ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
+
+  desktop-qt5:
+      source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+      source-subdir: qt
+      plugin: make
+      make-parameters: ["FLAVOR=qt5"]
+      build-packages:
+        - qtbase5-dev
+        - dpkg-dev
+      stage-packages:
+        - libxkbcommon0
+        - ttf-ubuntu-font-family
+        - dmz-cursor-theme
+        - light-themes
+        - adwaita-icon-theme
+        - gnome-themes-standard
+        - shared-mime-info
+        - libqt5gui5
+        - libgdk-pixbuf2.0-0
+        - libgtk2.0-0
+        - libqt5svg5 # for loading icon themes which are svg
+        - try: [appmenu-qt5] # not available on core18
+        - locales-all
+        - xdg-user-dirs
+
+  qt5-gtk-platform:
+    plugin: nil
+    stage-packages:
+      - qt5-gtk-platformtheme
+      - libcanberra-gtk-module
