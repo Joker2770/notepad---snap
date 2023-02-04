@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.22.0
 Encoding=UTF-8
-Name=npdd
+Name=Notepad--
 Comment=A sample Notepad++-like editor.
 Exec=npdd
 Terminal=false
