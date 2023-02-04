@@ -54,6 +54,8 @@ layout:
     bind: $SNAP/etc/pulse
   /usr/local/share:
     bind: $SNAP/usr/local/share
+  /usr/share/glib-2.0/schemas:
+    bind: $SNAP/usr/share/glib-2.0/schemas
   /usr/share/X11:
     bind: $SNAP/usr/share/X11
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gtk-2.0/modules:
@@ -79,7 +81,7 @@ apps:
       - audio-playback
     environment:
       DISABLE_WAYLAND: 1
-      XDG_DATA_DIRS: $SNAP/share:$XDG_DATA_DIRS
+      XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
       # Use GTK3 cursor theme, icon theme and open/save file dialogs.
       QT_QPA_PLATFORMTHEME: gtk3
 
