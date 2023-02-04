@@ -2,7 +2,7 @@
 Version=1.22.0
 Encoding=UTF-8
 Name=Notepad--
-Comment=A sample Notepad++-like editor.
+Comment=A simple Notepad++-like editor.
 Exec=npdd
 Terminal=false
 Type=Application
