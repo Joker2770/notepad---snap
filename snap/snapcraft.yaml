@@ -74,6 +74,8 @@ apps:
       - unity7
       - x11
       - opengl
+      - process-control
+      - system-observe
       - removable-media
       - gsettings
       - network
