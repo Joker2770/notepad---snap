@@ -85,7 +85,7 @@ apps:
       DISABLE_WAYLAND: 1
       XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
       # Use GTK3 cursor theme, icon theme and open/save file dialogs.
-      QT_QPA_PLATFORMTHEME: gtk3
+      # QT_QPA_PLATFORMTHEME: gtk3
 
 parts:
   npdd:
@@ -106,7 +106,6 @@ parts:
       - libqt5xmlpatterns5-dev
       - libqt5multimedia5-plugins
     stage-packages:
-      - gsettings-desktop-schemas
       - libqt5core5a
       - libqt5widgets5
       - libqt5multimedia5
@@ -142,8 +141,8 @@ parts:
         - locales-all
         - xdg-user-dirs
 
-  qt5-gtk-platform:
-    plugin: nil
-    stage-packages:
-      - qt5-gtk-platformtheme
-      - libcanberra-gtk-module
+  # qt5-gtk-platform:
+    # plugin: nil
+    # stage-packages:
+      # - qt5-gtk-platformtheme
+      # - libcanberra-gtk-module
