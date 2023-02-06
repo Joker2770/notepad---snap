@@ -93,9 +93,9 @@ parts:
     plugin: cmake
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr/local
-    source: https://gitee.com/coconil/notepad--.git
+    source: https://gitee.com/cxasm/notepad--.git
     source-type: git
-    source-branch: cmake_support
+    source-branch: master
     build-packages:
       - gcc
       - g++
