@@ -3,4 +3,7 @@
 [![npdd](https://snapcraft.io/npdd/badge.svg)](https://snapcraft.io/npdd)
 [![npdd](https://snapcraft.io/npdd/trending.svg?name=0)](https://snapcraft.io/npdd)
 
-notepad--是一个国产跨平台、简单的文本编辑器，是替换notepad++的一种选择。其内置强大的代码对比功能，让你丢掉付费的beyond compare。
+Introducing Notepad-- a text editor written in C++ that works seamlessly across Windows, Linux
+, and Mac platforms. Our aim is to eventually surpass Notepad++
+, with a particular focus on the Chinese UOS operating system. Unlike Notepad++
+, our advantage lies in our cross-platform compatibility and support for various OSes.
