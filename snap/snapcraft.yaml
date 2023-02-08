@@ -96,6 +96,7 @@ parts:
     plugin: cmake
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr/local
+      - -DCMAKE_BUILD_TYPE=Release
     source: https://gitee.com/cxasm/notepad--.git
     source-type: git
     source-branch: master
