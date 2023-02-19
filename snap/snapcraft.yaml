@@ -125,7 +125,7 @@ parts:
     after: [npdd]
     plugin: cmake
     cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
       - -DCMAKE_BUILD_TYPE=Release
     source: https://github.com/Joker2770/MD5Calc.git
     source-type: git
@@ -149,7 +149,7 @@ parts:
     after: [md5calc]
     plugin: cmake
     cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
       - -DCMAKE_BUILD_TYPE=Release
     source: https://gitee.com/Joker2770/ndd-json-viewer.git
     source-type: git
