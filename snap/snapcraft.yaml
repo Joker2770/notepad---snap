@@ -106,7 +106,7 @@ parts:
       - make
       - cmake
       - qtmultimedia5-dev
-      - libqscintilla2-qt5-dev
+      # - libqscintilla2-qt5-dev
       - libqt5xmlpatterns5-dev
       - libqt5multimedia5-plugins
     stage-packages:
@@ -120,6 +120,54 @@ parts:
       # make -j $(nproc)
       # mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/local/bin
       # cp ./notepad-- ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
+
+  md5calc:
+    after: [npdd]
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_BUILD_TYPE=Release
+    source: https://github.com/Joker2770/MD5Calc.git
+    source-type: git
+    source-branch: main
+    build-packages:
+      - gcc
+      - g++
+      - make
+      - cmake
+      - qtmultimedia5-dev
+      # - libqscintilla2-qt5-dev
+      - libqt5xmlpatterns5-dev
+      - libqt5multimedia5-plugins
+    stage-packages:
+      - libqt5core5a
+      - libqt5widgets5
+      - libqt5multimedia5
+      - libqt5xmlpatterns5
+
+  ndd-json-viewer:
+    after: [md5calc]
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_BUILD_TYPE=Release
+    source: https://gitee.com/Joker2770/ndd-json-viewer.git
+    source-type: git
+    source-branch: snapcraft-distribution
+    build-packages:
+      - gcc
+      - g++
+      - make
+      - cmake
+      - qtmultimedia5-dev
+      # - libqscintilla2-qt5-dev
+      - libqt5xmlpatterns5-dev
+      - libqt5multimedia5-plugins
+    stage-packages:
+      - libqt5core5a
+      - libqt5widgets5
+      - libqt5multimedia5
+      - libqt5xmlpatterns5
 
   desktop-qt5:
       source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
