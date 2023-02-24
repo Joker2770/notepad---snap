@@ -33,7 +33,7 @@ description: |
 
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
-base: core22
+base: core20
 license: 'GPL-3.0+'
 
 plugs:
@@ -99,7 +99,7 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
     source: https://gitee.com/cxasm/notepad--.git
     source-type: git
-    source-branch: cmake-dev
+    source-branch: master
     build-packages:
       - gcc
       - g++
@@ -179,7 +179,7 @@ parts:
         - dpkg-dev
       stage-packages:
         - libxkbcommon0
-        # - ttf-ubuntu-font-family
+        - ttf-ubuntu-font-family
         - dmz-cursor-theme
         - light-themes
         - adwaita-icon-theme
@@ -189,7 +189,7 @@ parts:
         - libgdk-pixbuf2.0-0
         - libgtk2.0-0
         - libqt5svg5 # for loading icon themes which are svg
-        # - try: [appmenu-qt5] # not available on core18
+        - try: [appmenu-qt5] # not available on core18
         - locales-all
         - xdg-user-dirs
 
