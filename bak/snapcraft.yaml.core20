@@ -117,6 +117,7 @@ parts:
       - libqt5xmlpatterns5
     override-build: |
       cmake ${SNAPCRAFT_PART_BUILD}/../src -DCMAKE_BUILD_TYPE=Release
+      make -j $(nproc)
       mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/local/bin
       cp ./Notepad-- ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
       cp -r ${SNAPCRAFT_PART_BUILD}/../src/src/themes ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
