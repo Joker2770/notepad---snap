@@ -66,6 +66,7 @@ layout:
 
 apps:
   npdd:
+    adapter: full
     command: usr/local/bin/Notepad--
     command-chain:
       - bin/desktop-launch
@@ -89,7 +90,7 @@ apps:
       QT_XCB_FORCE_SOFTWARE_OPENGL: 1  # For bug in Qt 5.9 + Nouveau. See https://bugreports.qt.io/browse/QTBUG-41242
       XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
       # Use GTK3 cursor theme, icon theme and open/save file dialogs.
-      QT_QPA_PLATFORMTHEME: gtk3
+      # QT_QPA_PLATFORMTHEME: gtk3
 
 parts:
   npdd:
@@ -196,8 +197,8 @@ parts:
         - xdg-user-dirs
         - fcitx-frontend-qt5
 
-  qt5-gtk-platform:
-    plugin: nil
-    stage-packages:
-      - qt5-gtk-platformtheme
-      - libcanberra-gtk-module
+  # qt5-gtk-platform:
+    # plugin: nil
+    # stage-packages:
+      # - qt5-gtk-platformtheme
+      # - libcanberra-gtk-module
