@@ -110,6 +110,7 @@ parts:
       - libqt5xmlpatterns5-dev
       - libqt5multimedia5-plugins
     stage-packages:
+      - fonts-wqy-zenhei
       - libqt5core5a
       - libqt5widgets5
       - libqt5multimedia5
