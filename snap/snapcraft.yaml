@@ -96,7 +96,7 @@ parts:
     after: [desktop-qt5]
     plugin: cmake
     cmake-parameters:
-      # - -DCMAKE_INSTALL_PREFIX=/usr/local
+      - -DCMAKE_INSTALL_PREFIX=/usr/local
       - -DCMAKE_BUILD_TYPE=Release
     source: https://gitee.com/joker2770/notepad--.git
     source-type: git
@@ -117,15 +117,15 @@ parts:
       - libqt5multimedia5
       - libqt5printsupport5
       - libqt5xmlpatterns5
-    override-build: |
-      cd ${SNAPCRAFT_PART_BUILD}/../src
-      make -f linux-universal.mk linux-universal-release
-      cd build/linux-universal
-      make DESTDIR=${SNAPCRAFT_PART_INSTALL}/usr/local/bin install
-      cd ${SNAPCRAFT_PART_BUILD}/../src
-      rm -rf build/linux-universal
-      cd ${SNAPCRAFT_PART_BUILD}
-      cp -r ${SNAPCRAFT_PART_BUILD}/../src/src/themes ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
+    # override-build: |
+      # cd ${SNAPCRAFT_PART_BUILD}/../src
+      # make -f linux-universal.mk linux-universal-release
+      # cd build/linux-universal
+      # make DESTDIR=${SNAPCRAFT_PART_INSTALL}/usr/local/bin install
+      # cd ${SNAPCRAFT_PART_BUILD}/../src
+      # rm -rf build/linux-universal
+      # cd ${SNAPCRAFT_PART_BUILD}
+      # cp -r ${SNAPCRAFT_PART_BUILD}/../src/src/themes ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
 
   md5calc:
     after: [npdd]
