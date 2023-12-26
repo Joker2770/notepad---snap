@@ -122,13 +122,16 @@ parts:
       make -f linux-universal.mk linux-universal-release
       cd build/linux-universal
       make DESTDIR=${SNAPCRAFT_PART_INSTALL}/usr/local/bin install
+      cd ${SNAPCRAFT_PART_BUILD}/../src
+      rm -rf build/linux-universal
+      cd ${SNAPCRAFT_PART_BUILD}
       cp -r ${SNAPCRAFT_PART_BUILD}/../src/src/themes ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
 
   md5calc:
     after: [npdd]
     plugin: cmake
     cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
       - -DCMAKE_BUILD_TYPE=Release
     source: https://github.com/Joker2770/MD5Calc.git
     source-type: git
@@ -152,7 +155,7 @@ parts:
     after: [md5calc]
     plugin: cmake
     cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin/plugin
+      - -DCMAKE_INSTALL_PREFIX=/usr/local/bin
       - -DCMAKE_BUILD_TYPE=Release
     source: https://gitee.com/Joker2770/ndd-json-viewer.git
     source-type: git
