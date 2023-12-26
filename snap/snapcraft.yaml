@@ -119,10 +119,10 @@ parts:
       - libqt5printsupport5
       - libqt5xmlpatterns5
     override-build: |
-      cmake ${SNAPCRAFT_PART_BUILD}/../src -DCMAKE_BUILD_TYPE=Release
-      make -j $(nproc)
-      mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/local/bin
-      cp ./Notepad-- ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
+      cd ${SNAPCRAFT_PART_BUILD}/../src
+      make -f linux-universal.mk linux-universal-release
+      cd build/linux-universal
+      make DESTDIR=${SNAPCRAFT_PART_INSTALL}/usr/local/bin install
       cp -r ${SNAPCRAFT_PART_BUILD}/../src/src/themes ${SNAPCRAFT_PART_INSTALL}/usr/local/bin/
 
   md5calc:
